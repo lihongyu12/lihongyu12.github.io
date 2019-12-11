@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    #box{
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        position: absolute
+    }
+    
+    
+    </style>
+</head>
+
+<body>
+    <div id="box" v-ooo>
+
+    </div>
+    <script src="vue.js"></script>
+    <script src="vue-resource.js"></script>
+    <script>
+        var odiv = document.querySelector('.box')
+        Vue.directive('ooo', {
+            inserted(dom) {
+                dom.onmousedown = function () {
+                    document.onmousemove = function (e) {
+                        var oEv = e || event;
+                        var X = oEv.clientX - dom.offsetWidth / 2;
+                        var Y = oEv.clientY - dom.offsetHeight / 2;
+                        var maxX = document.documentElement.clientWidth - dom.offsetWidth;
+                        var maxY = document.documentElement.clientHeight - dom.offsetHeight;
+                        console.log(X, Y);
+
+                        if (X <= 0) X = 0;
+                        if (Y <= 0) Y = 0;
+                        if (X >= maxX) X = maxX;
+                        if (Y >= maxY) Y = maxY;
+                        dom.style.left = X + 'px'
+                        dom.style.top = Y + 'px'
+                        dom.onmouseup = function () {
+                            document.onmousemove = null;
+                        }
+                    }
+                }
+            }
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        new Vue({
+            el: '#box'
+        })
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
