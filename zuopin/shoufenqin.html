@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    * {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    ul {
+        position: relative;
+        width: 800px;
+        border: 1px solid #ccc;
+        height: 300px;
+        margin: 30px auto;
+        overflow: hidden;
+    }
+
+    li {
+        position: absolute;
+        width: 500px;
+        height: 300px;
+        -webkit-transition: all 0.5s ease-out;  /* Saf5.2+, Chrome */
+           -moz-transition: all 0.5s ease-out;  /* FF4+ */
+            -ms-transition: all 0.5s ease-out;  /* IE10? */
+             -o-transition: all 0.5s ease-out;  /* Opera 10.5+ */
+                transition: all 0.5s ease-out;
+    }
+
+    .tit,
+    .img {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
+
+    .tit {
+        z-index: 99;
+        width: 100px;
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 300px;
+    }
+
+    .tit p {
+        width: 20px;
+        text-align: center;
+        font-size: 18px;
+        line-height: 30px;
+        margin: auto;
+    }
+
+    .img img {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 700px;
+        height: 300px;
+         -webkit-transition: all 0.5s ease-out;  /* Saf5.2+, Chrome */
+           -moz-transition: all 0.5s ease-out;  /* FF4+ */
+            -ms-transition: all 0.5s ease-out;  /* IE10? */
+             -o-transition: all 0.5s ease-out;  /* Opera 10.5+ */
+                transition: all 0.5s ease-out;
+    }
+    .trans{
+        transform: translateX(400px);
+    }
+    .trans2{
+        transform: translateX(-200px);
+    }
+    
+    </style>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <no1 :aaa="url"></no1>
+    </div>
+    <template id="no1">
+        <div>
+            <ul>
+                <li v-for="(i,$index) in url" :style="{left:$index*l+'px'}" v-bind:class="$index>a?'trans':''">
+                    <div class="tit" @mouseover.self="translate($index)">
+                        <p>此处是标题</p>
+                    </div>
+                    <div class="img">
+                        <img :src="i" v-bind:class="$index!=a?'trans2':'trans3'">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </template>
+</body>
+
+</html>
+<script type="text/javascript">
+    Vue.component('no1',{
+        template:'#no1',
+        props:['aaa'],
+        data(){
+            return {
+                url:this.aaa,
+                l: 100,
+                a:0
+            }
+        },
+        methods: {
+        translate(index) {
+            this.a=index
+        }
+        
+    }
+    })
+new Vue({
+    el: '#box',
+    data: {
+        url: ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg'],
+        l: 100,
+        a:0
+    }
+    
+})
+</script>

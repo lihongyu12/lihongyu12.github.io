@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    	.box2{
+    		width: 100px;
+    		height: 100px;
+    		border:1px solid #ccc; 
+    		background-color: #ddd;
+    	}
+    </style>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div class="box">
+		
+			<con v-for="i in arr" :abc='i'>
+				
+			</con>
+		
+    </div>
+	<template id="no1">
+		<div>
+			<div :class="json">
+				{{json}}
+			</div>
+		</div>	
+	</template>
+</body>
+
+</html>
+<script type="text/javascript">
+Vue.component('con', {
+    data() {
+        return {
+            json:this.abc
+        }
+    },
+    template: '#no1',
+    props:['abc']
+})
+new Vue({
+    el: '.box',
+    data:{
+    	arr:[1,2,3,4]
+    }
+})
+</script>

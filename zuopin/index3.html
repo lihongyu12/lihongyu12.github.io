@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+
+<style>
+*{
+	list-style: none;
+}
+	.kgl{
+		background-color: blue;
+		border-bottom:none;
+		border-bottom:2px solid red;
+		cursor: pointer;
+		user-select: none;
+	}
+	li{
+		color: #010101;
+		line-height: 26px;
+		text-indent: 2rem;
+	}
+</style>
+</head>
+<body>
+	<div id="box">
+		<no1 :b="arr"></no1>
+	</div>
+
+	<template id="no1">
+		<div style="width: 600px;margin: 0 auto;">
+			<h4 style="float:left;width:130px;height:35px;line-height:35px;text-align: center;border-left:1px solid #ddd;" v-for="(i,index) in json" @mouseover="type=index" :class="type==index?'kgl':''">{{i.a}}</h4>
+			<div style="width: 520px;float:left;border:1px solid #ccc;border-top: none;" v-for="(i,index) in json" v-show="type==index">
+				<li v-for="a in i">
+					{{a}}
+				</li>
+				
+			</div>
+				
+		</div>
+	</template>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	Vue.component('no1',{
+		template:'#no1',
+		props:['b'],
+		data(){
+			return {
+				type:0,
+				json:this.b
+			}
+		},
+	})
+	new Vue({
+		el:'#box',
+		data:{
+			type:0,
+			arr:[{a:'jquery',b:'jPraesent risus nisi, iaculis nec condimentum vel, rhoncus vel dolor. Aenean nisi lectus, varius nec tempus id, dapibus non quam.',d:'Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. Mauris turpis tortor, mollis non vulputate sit amet, rhoncus vitae purus.',e:'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.',f:'Cras lacinia porttitor urna, vitae molestie libero posuere et.'},{a:'jquery',b:'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras pretium elit et erat condimentum et volutpat lorem vehicula',c:'Morbi tincidunt pharetra orci commodo molestie. Praesent ut leo nec dolor tempor eleifend.',d:'Non erat laoreet ullamcorper. Pellentesque magna metus, feugiat eu elementum sit amet',e:'cursus sed diam. Curabitur posuere porttitor lorem, eu malesuada tortor faucibus sed.',f:'Donec purus leo, porttitor eu molestie quis, porttitor sit amet ipsum.'},{a:'jquery',b:'per inceptos himenaeos. Donec accumsan ornare elit id imperdiet.',c:'Cum sociis natoque penatibus',d:'Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et.',e:'Magnis dis parturient montes, nascetur ridiculus mus.',f:' Nullam ac massa quis nisi porta mollis venenatis sit amet urna. Ut in mauris velit, sed bibendum turpis.'},{a:'jquery',b:'In consequat nisi vel lectus dapibus sodales. ',c:'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent bibendum sagittis libero.',d:'Imperdiet sem interdum nec',e:'jMauris rhoncus tincidunt libero quis fringilla.',f:'Pellentesque habitant'}]
+		}
+	})
+</script>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    [v-cloak] {
+        display: none;
+    }
+
+    .no1 {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .no2 {
+        transition: all .3s;
+        min-height: 200px;
+        overflow: hidden;
+    }
+
+    .no3 {
+        float: left;
+    }
+
+    .l {
+        position: absolute;
+        top: 50%;
+        height: 50px;
+        width: 30px;
+        text-align: center;
+        line-height: 50px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-size: 20px;
+        left: 0;
+        margin-top: -25px;
+    }
+
+    img {
+        display: block;
+
+        height: 100%;
+    }
+
+    .r {
+        position: absolute;
+        top: 50%;
+        height: 50px;
+        width: 30px;
+        text-align: center;
+        line-height: 50px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-size: 20px;
+        right: 0;
+        margin-top: -25px;
+    }
+
+    .bk {
+        background-color: #fff
+    }
+
+    span {
+        background-color: red;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box" v-cloak="">
+    	<no1 :aaa="arr">
+    		
+    	</no1>
+    </div>
+    <template id="no1">
+            <div>
+                <div style="width: 500px;margin: 100px auto;height: 200px;border: 1px solid #CCCCCC;" class="no1">
+                    <div :style="{width:100*arr.length+'%',marginLeft:index*-100+'%'}" class="no2">
+                        <div :style="{width:100/arr.length+'%',background:'#ccc',minHeight:'200px'}" class="no3" v-for="i in arr">
+                            <img :src="i" :alt="i" width="100%" />
+                        </div>
+                    </div>
+                    <div class="l" @click="l_btn">
+                        < </div> <div class="r" @click="r_btn">
+                            >
+                    </div>
+                    <div style="position: absolute;bottom: 20px;left: 30px;">
+                        <span v-for="(i,$index) in arr" style="display: inline-block;padding: 5px;margin: 0 5px;border-radius: 50%;" @click="index=$index" :class="$index==index?'bk':''"></span>
+                    </div>
+                </div>
+            </div>
+        </template>
+</body>
+<script src="vue.js"></script>
+<script>
+Vue.component('no1', {
+    template: '#no1',
+    props: ['aaa'],
+    data() {
+        return {
+        	index: 0,
+            arr: this.aaa
+        }
+    },
+    methods: {
+        r_btn() {
+            this.index++
+            if (this.index == this.arr.length) {
+                this.index = 0
+            }
+        },
+        l_btn() {
+            this.index--
+            if (this.index == -1) {
+                this.index = this.arr.length - 1
+            }
+        }
+    }
+})
+new Vue({
+    el: "#box",
+    data: {
+        arr: [
+            'http://pic31.nipic.com/20130728/3822951_140613063000_2.jpg',
+            'http://pic3.nipic.com/20090617/2730622_083655016_2.jpg',
+            'http://pic167.nipic.com/file/20180531/27191760_142709024977_2.jpg',
+            'http://pic37.nipic.com/20140110/5331179_093221399136_2.jpg',
+        ]
+    }
+
+})
+</script>
+
+</html>
