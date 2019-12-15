@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .box {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .doc {
+        position: relative;
+        height: 100%;
+    }
+
+    .head {
+        width: 100%;
+        line-height: 80px;
+        text-indent: 4rem;
+        background-color: #cdcdcd;
+        font-size: 24px;
+        color: #000;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+		z-index: 999;
+    }
+	.cont{
+		height: 688px;
+		width:100%;
+		overflow:hidden;
+		
+	}
+	.cont2{
+		position: relative;
+		-webkit-transition: all 1s ease-out;  /* Saf5.2+, Chrome */
+		   -moz-transition: all 1s ease-out;  /* FF4+ */
+		    -ms-transition: all 1s ease-out;  /* IE10? */
+		     -o-transition: all 1s ease-out;  /* Opera 10.5+ */
+		        transition: all 1s ease-out;
+	}
+    .cont-log {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding-left: 200px;
+        padding-top: 20px;
+    }
+
+    .imgs {
+        float: left;
+        margin-right: 50px;
+    }
+
+    .txts {
+        margin-top: 200px;
+        float: left;
+        width: 500px;
+    }
+
+    .txts h5 {
+        font-size: 48px;
+        line-height: 70px;
+        margin-bottom: 20px;
+    }
+
+    .txts p {
+        font-size: 14px;
+        line-height: 30px;
+        text-indent: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .txts>div {
+        width: 100px;
+        line-height: 40px;
+        text-align: center;
+        height: 40px;
+        border: 3px solid #cdcdcd;
+        -webkit-transition: all 0.3s ease-out;
+        /* Saf3.2+, Chrome */
+        -moz-transition: all 0.3s ease-out;
+        /* FF4+ */
+        -ms-transition: all 0.3s ease-out;
+        /* IE10? */
+        -o-transition: all 0.3s ease-out;
+        /* Opera 10.5+ */
+        transition: all 0.3s ease-out;
+    }
+
+    .txts>div:hover {
+        background-color: #cdcdcd;
+        user-select: none;
+    }
+    </style>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div class="box">
+        <div class="doc" @mousewheel="handleScroll()">
+            <div class="head">
+                <h5>1235</h5>
+            </div>
+            <div class="cont">
+            	<div class="cont2" :style="{top:x*-668+'px'}" >
+            		<con v-for="(i,$index) in arr" :abc="i"></con>
+            	</div>
+            </div>
+        </div>
+    </div>
+    <template id="no1">
+        <div>
+            <div class="cont-log">
+                <div class="imgs">
+                    <img :src="json.img" alt="">
+                </div>
+                <div class="txts">
+                    <h5>{{json.tit}}</h5>
+                    <p>{{json.cont}}</p>
+                    <div>查看案例</div>
+                </div>
+            </div>
+        </div>
+    </template>
+</body>
+
+</html>
+<script type="text/javascript">
+Vue.component('con', {
+    data() {
+        return {
+            json: this.abc
+        }
+    },
+    template: '#no1',
+    props: ['abc']
+})
+new Vue({
+    el: '.box',
+    data: {
+    	i:0,
+    	x:0,
+    	arr:[{img:"https://ccdn.goodq.top/caches/ddf5c4ce2ba35bcad453afcc33926308/aHR0cHM6Ly81Y2MxMjM0MTA1MjhiLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYTAyMDUxNGI4YjUyYWYwODhhOWU1YzI4YzdlZTBiYTkuanBn.jpg",tit:"logo设计",cont:"当今最领先的响应式自助建站平台，我们的流线式网页布局设计方案和可视化图文内容编辑模式让网站制作和维护成为一件轻松惬意的事。无论您是普通互联网用户， 还是专业网站制作人员，都能使用起飞页设计出最具专业水准的网站"},{img:"https://ccdn.goodq.top/caches/ddf5c4ce2ba35bcad453afcc33926308/aHR0cHM6Ly81Y2MxMjM0MTA1MjhiLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYTAyMDUxNGI4YjUyYWYwODhhOWU1YzI4YzdlZTBiYTkuanBn.jpg",tit:"产品设计",cont:"当今最领先的响应式自助建站平台，我们的流线式网页布局设计方案和可视化图文内容编辑模式让网站制作和维护成为一件轻松惬意的事。无论您是普通互联网用户， 还是专业网站制作人员，都能使用起飞页设计出最具专业水准的网站"},{img:"https://ccdn.goodq.top/caches/ddf5c4ce2ba35bcad453afcc33926308/aHR0cHM6Ly81Y2MxMjM0MTA1MjhiLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYTAyMDUxNGI4YjUyYWYwODhhOWU1YzI4YzdlZTBiYTkuanBn.jpg",tit:"logo设计",cont:"当今最领先的响应式自助建站平台，我们的流线式网页布局设计方案和可视化图文内容编辑模式让网站制作和维护成为一件轻松惬意的事。无论您是普通互联网用户， 还是专业网站制作人员，都能使用起飞页设计出最具专业水准的网站"}]
+    },
+    methods: {
+    		 handleScroll(){
+            console.log(event.wheelDelta)
+            if (event.wheelDelta>0) {
+            	this.x--;
+            	if (this.x<0) {
+            	this.x=0
+            	}
+            }else {
+            	this.x++;
+            	if (this.x>this.arr.length-1) {
+            	this.x=this.arr.length-1
+            	}
+            }
+           
+        }
+    }, mounted () {
+            window.addEventListener('scroll', this.handleScroll, true);  
+             // 监听（绑定）滚轮 滚动事件
+        }
+
+})
+
+
+
+       
+      
+         
+
+</script>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .box {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .doc {
+        position: relative;
+        height: 100%;
+    }
+
+
+    .cont {
+        height: 688px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .box1 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background-color: transparent;
+    }
+
+    .box1-con {
+        position: relative;
+        -webkit-transition: all 0.5s ease-out;  /* Saf5.2+, Chrome */
+           -moz-transition: all 0.5s ease-out;  /* FF4+ */
+            -ms-transition: all 0.5s ease-out;  /* IE10? */
+             -o-transition: all 0.5s ease-out;  /* Opera 10.5+ */
+                transition: all 0.5s ease-out;
+    }
+
+    .ui {
+        height: 100%;
+        width: 100%;
+    }
+
+    .box1 .ui .ui-1 {
+        width: 600px;
+        height: 400px;
+        margin: 150px auto;
+        border: 10px solid #ffff00;
+        padding-left: 50px;
+        padding-right: 50px;
+        text-align: center;
+    }
+	
+
+    .box1 .ui ui-1 >div {
+        background-color: #ffff00;
+        margin: auto;
+        width: 150px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        margin-top: 50px;
+    }
+
+    .box1-img {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: 5;
+        width: 100%;
+        height: 100%;
+    }
+
+    .box-img2 {
+        position: relative;
+    }
+
+    .bag {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 5;
+        -webkit-transition: all 0.5s ease-out;  /* Saf5.2+, Chrome */
+           -moz-transition: all 0.5s ease-out;  /* FF4+ */
+            -ms-transition: all 0.5s ease-out;  /* IE10? */
+             -o-transition: all 0.5s ease-out;  /* Opera 10.5+ */
+                transition: all 0.5s ease-out;
+    }
+
+    .bag img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .box1 h5 {
+        font-size: 90px;
+        color: #fff;
+        line-height: 180px;
+    }
+	.box1  .box-clone{
+		width: 100%;
+		height: 668px;
+		color: #fff;
+		padding-left:250px;
+		box-sizing: border-box;
+	}
+    .box1  .box-clone h5 {
+        font-size: 50px;
+        line-height: 100px;
+        margin-top: 200px;
+    }
+    .box-clone  p{
+		line-height: 30px;
+		font-size:16px;
+		width: 700px;
+		margin-bottom:100px;
+
+    }
+    </style>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div class="box">
+        <div class="doc" @mousewheel="handleScroll()">
+            <div class="cont">
+
+                <div class="box1">
+                    <div class="box1-con" :style="{top:x*-668+'px'}">
+                        <div class="ui">
+                            <div class="ui-1">
+                                <h5>工农业互联网</h5>
+                                <p>
+                                    人工智能、大数据、云计算，其实这些技术已经推动了新一轮的产业升级的浪潮到来，现在5G开始商用，已经意味着万物的到来，包括工业、农业、制造业都会发生一个很大的变化
+                                </p>
+                                <div>
+                                    关于我们
+                                </div>
+                            </div>
+                        </div>
+                        <con v-for="(i,$index) in arr" :abc="i"></con>
+                    </div>
+                </div>
+                <div class="box1-img">
+                    <div class="box1-img2">
+                        <div class="bag" v-for="(i,$index) in arr" >
+                            <img :src="i.img" alt="" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <template id="no1">
+        <div>
+             <div class="box-clone">
+                                <h5>
+                                    {{json.tit}}
+                                </h5>
+                                <p>{{json.cont}}</p>
+                                <div>
+                                    查看更多>>
+                                </div>
+                            </div>
+        </div>
+    </template>
+</body>
+
+</html>
+<script type="text/javascript">
+Vue.component('con', {
+    data() {
+        return {
+            json: this.abc
+        }
+    },
+    template: '#no1',
+    props: ['abc']
+})
+new Vue({
+    el: '.box',
+    data: {
+        i: 0,
+        x: 0,
+        arr: [{img:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576422265836&di=f007ca2b7b5122e497b5b4688da3c87e&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ff239089b4d83e767d082c5c29619cb27a1653c389758b-xxfX49_fw658",tit:"关于我们",cont:"我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上10分钟便可以完成一个H5响应式网站，您会发现完全不需要编写一行代码，这就是起飞页自助建站的神奇之处。"},{img:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576422265836&di=f007ca2b7b5122e497b5b4688da3c87e&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ff239089b4d83e767d082c5c29619cb27a1653c389758b-xxfX49_fw658",tit:"为什么选择我们",cont:"我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上10分钟便可以完成一个H5响应式网站，您会发现完全不需要编写一行代码，这就是起飞页自助建站的神奇之处。"},{img:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576422265836&di=f007ca2b7b5122e497b5b4688da3c87e&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ff239089b4d83e767d082c5c29619cb27a1653c389758b-xxfX49_fw658",tit:"关于我们",cont:"我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上10分钟便可以完成一个H5响应式网站，您会发现完全不需要编写一行代码，这就是起飞页自助建站的神奇之处。"},]
+    },
+    methods: {
+        handleScroll() {
+            console.log(event.wheelDelta)
+            if (event.wheelDelta > 0) {
+                this.x--;
+                if (this.x < 0) {
+                    this.x = 0
+                }
+            } else {
+                this.x++;
+                if (this.x > this.arr.length ) {
+                    this.x = this.arr.length 
+                }
+            }
+
+        }
+    },
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll, true);
+        // 监听（绑定）滚轮 滚动事件
+    },
+    create(){
+
+    }
+
+})
+</script>
