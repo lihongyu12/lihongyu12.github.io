@@ -30,11 +30,17 @@
     }
 
     .box1 {
+    	top: 0px;
         position: absolute;
         width: 100%;
-        height: 100%;
         z-index: 10;
         background-color: transparent;
+        height: 2752px;
+        -webkit-transition: all 0.5s ease-out;  /* Saf5.2+, Chrome */
+           -moz-transition: all 0.5s ease-out;  /* FF4+ */
+            -ms-transition: all 0.5s ease-out;  /* IE10? */
+             -o-transition: all 0.5s ease-out;  /* Opera 10.5+ */
+                transition: all 0.5s ease-out;
     }
 
     .box1-con {
@@ -47,8 +53,11 @@
     }
 
     .ui {
-        height: 100%;
+        height: 688px;
         width: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
     }
 
     .box1 .ui .ui-1 {
@@ -83,12 +92,11 @@
 
     .box1-img2 {
         position: relative;
-        height: 2004px;
         width: 100%;
     }
 
     .bag {
-        height: 668px;
+        height: 688px;
         width: 100%;
         position: absolute;
         left: 0px;
@@ -113,10 +121,11 @@
     }
 	.box1  .box-clone{
 		width: 100%;
-		height: 668px;
+		height: 688px;
 		color: #fff;
 		padding-left:250px;
 		box-sizing: border-box;
+		position: absolute;
 	}
     .box1  .box-clone h5 {
         font-size: 50px;
@@ -128,9 +137,10 @@
 		font-size:16px;
 		width: 700px;
 		margin-bottom:100px;
+
     }
     .k{
-    	top: 0px !important;
+    	top:0px !important;
     }
     </style>
     <script type="text/javascript" src="vue.js"></script>
@@ -140,10 +150,9 @@
     <div class="box">
         <div class="doc" @mousewheel="handleScroll()">
             <div class="cont">
-
-                <div class="box1">
-                    <div class="box1-con" :style="{top:x*-668+'px'}">
-                        <div class="ui">
+                <div class="box1" :style="{height:'wid2()',top:(-668*x)+'px'}" >
+                   <!--  <div class="box1-con" :style="{top:x*-668+'px'}"> --><!-- </div> -->
+                        <div class="ui" :style="{height:'wid()'}" >
                             <div class="ui-1">
                                 <h5>工农业互联网</h5>
                                 <p>
@@ -154,12 +163,15 @@
                                 </div>
                             </div>
                         </div>
-                        <con v-for="(i,$index) in arr" :abc="i"></con>
-                    </div>
+                        <con v-for="(i,$index) in arr" :abc="i" :style="{top:yu($index)+'px'}"></con>
+                    
                 </div>
                 <div class="box1-img">
-                    <div class="box1-img2">
-                        <div class="bag" v-for="(i,$index) in arr" :style="{top:yu($index)+'px',zIndex:'$index+1'}" :class="($index+1)==x?'k':''">
+                    <div class="box1-img2" :style="{height:wid()+'px'}">
+                    	<div :style="{position:'absolute',top:'0px',left:'0px',height:'688px',width:'100%'}">
+                    		<img :style="{width:'100%',height:'100%'}" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576473224580&di=2683d617bf89384f4c04afedb1bd307c&imgtype=0&src=http%3A%2F%2Ffile03.16sucai.com%2F2017%2F1100%2F16sucai_p20161105119_2d3.JPG" alt="">
+                    	</div>
+                        <div class="bag" v-for="(i,$index) in arr" :style="{top:-($index+1)*wid()+'px',zIndex:'$index+1'}" :class="($index+1)==x?'k':''">
                             <img :src="i.img" alt="" >
                         </div>
                     </div>
@@ -168,7 +180,7 @@
         </div>
     </div>
     <template id="no1">
-        <div>
+        
              <div class="box-clone">
                                 <h5>
                                     {{json.tit}}
@@ -177,8 +189,8 @@
                                 <div>
                                     查看更多>>
                                 </div>
-                            </div>
-        </div>
+            </div>
+     
     </template>
 </body>
 
@@ -198,11 +210,11 @@ new Vue({
     data: {
         i: 0,
         x: 0,
-        arr: [{img:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576422265836&di=f007ca2b7b5122e497b5b4688da3c87e&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ff239089b4d83e767d082c5c29619cb27a1653c389758b-xxfX49_fw658",tit:"关于我们",cont:"我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上10分钟便可以完成一个H5响应式网站，您会发现完全不需要编写一行代码，这就是起飞页自助建站的神奇之处。"},{img:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576422265836&di=f007ca2b7b5122e497b5b4688da3c87e&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ff239089b4d83e767d082c5c29619cb27a1653c389758b-xxfX49_fw658",tit:"为什么选择我们",cont:"我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上10分钟便可以完成一个H5响应式网站，您会发现完全不需要编写一行代码，这就是起飞页自助建站的神奇之处。"},{img:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576422265836&di=f007ca2b7b5122e497b5b4688da3c87e&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ff239089b4d83e767d082c5c29619cb27a1653c389758b-xxfX49_fw658",tit:"关于我们",cont:"我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上10分钟便可以完成一个H5响应式网站，您会发现完全不需要编写一行代码，这就是起飞页自助建站的神奇之处。"},]
+        arr: [{img:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576422265836&di=f007ca2b7b5122e497b5b4688da3c87e&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ff239089b4d83e767d082c5c29619cb27a1653c389758b-xxfX49_fw658",tit:"关于我们",cont:"我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上10分钟便可以完成一个H5响应式网站，您会发现完全不需要编写一行代码，这就是起飞页自助建站的神奇之处。"},{img:"http://www.maoshangge.com/uploadfile/2019/1011/20191011040540672.png",tit:"为什么选择我们",cont:"我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上10分钟便可以完成一个H5响应式网站，您会发现完全不需要编写一行代码，这就是起飞页自助建站的神奇之处。"},{img:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577067944&di=441effe47cedfc273778479b13eec3c6&imgtype=jpg&er=1&src=http%3A%2F%2Ffile03.16sucai.com%2F2017%2F1100%2F16sucai_p20161105078_1dd.JPG",tit:"关于我们",cont:"我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上10分钟便可以完成一个H5响应式网站，您会发现完全不需要编写一行代码，这就是起飞页自助建站的神奇之处。"},]
     },
     methods: {
     	yu(ik){
-    		var l=(ik)*668;
+    		var l=(ik+1)*668;
     		return l;
     	},
         handleScroll() {
@@ -219,14 +231,20 @@ new Vue({
                 }
             }
 
-        }
+        },
+        wid(){
+    		return document.body.clientHeight;
+    	},
+    	wid2(){
+    		return this.wid()*(this.arr.length+1)
+    	}
     },
     mounted() {
         window.addEventListener('scroll', this.handleScroll, true);
         // 监听（绑定）滚轮 滚动事件
     },
-    create(){
-
+    created(){
+    		
     }
 
 })
