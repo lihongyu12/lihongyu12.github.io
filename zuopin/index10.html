@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    .box {
+        width: 800px;
+        height: 500px;
+        border: 1px solid #000;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .sp {
+        display: inline-block;
+        position: absolute;
+        border: 1px dashed #000;
+    }
+    </style>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div class="box">
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    new Vue({
+        el:'.box',
+        methods:{
+            cre(){
+                $('.box').mousedown(function(ev) {
+    var x1 = ev.pageX - $('.box').offset().left;
+    var y1 = ev.pageY - $('.box').offset().top;
+    var x2 = $('.box').offset().left;
+    var y2 = $('.box').offset().top;
+    var creat = $('<span class="sp"></span>')
+    var s1 = parseInt(Math.random() * 255)
+    var s2 = parseInt(Math.random() * 255)
+    var s3 = parseInt(Math.random() * 255)
+    creat.appendTo($('.box'))
+    $('.box').mousemove(function(ev) {
+        var x3 = ev.pageX - x2 - x1
+        var y3 = ev.pageY - y2 - y1
+        if (x3 < 0) {
+            creat.css('left', ev.pageX - x2)
+        } else {
+            creat.css('left', x1)
+        }
+        if (y3 < 0) {
+            creat.css('top', ev.pageY - y2)
+        } else {
+            creat.css('top', y1)
+        }
+        creat.width(Math.abs(x3))
+        creat.height(Math.abs(y3))
+    })
+    $(document).mouseup(function(ev) {
+        creat.css('backgroundColor', `rgba(${s1},${s2},${s3})`)
+        creat.css('borderStyle', 'solid')
+        $('.box').off('mousemove')
+    })
+})
+            }
+        },
+        created(){
+            this.cre()
+        }
+    })
+
+</script>

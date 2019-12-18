@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div class="box">
+        父级：{{parents}}<button @click="parents++">++</button>
+        <no1 :no1="parents" @ziji="box_btn"></no1>
+    </div>
+    <template id="no1">
+        <div>
+            子级1：{{children}}<button @click="btn">++</button>
+        </div>
+    </template>
+
+</body>
+
+</html>
+<script type="text/javascript">
+	var bus = new Vue()
+Vue.component('no1', {
+    template: "#no1",
+    props: ['no1'],
+    data() {
+        return {
+            children: this.no1
+        }
+    },
+    methods:{
+    	btn(){
+    		this.children++
+    		this.$emit('ziji', this.no1)
+    	}
+    }
+
+})
+
+new Vue({
+    el: '.box',
+    data: {
+        parents: 0
+    },
+    methods: {
+        box_btn(a) {
+            this.parents = a
+        }
+    }
+})
+</script>

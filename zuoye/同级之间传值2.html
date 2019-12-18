@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div class="box">
+		<no1></no1><no2></no2>
+	</div>
+	<template id="no1">
+		<div>
+			<button @click="fs">++</button><span>{{n1}}</span><button @click="remo">--</button>
+		</div>
+	</template>
+	<template id="no2">
+		<div>
+			<button @click="fn">{{n2}}</button>
+			<button @click="fn2">{{n2}}</button>
+		</div>
+	</template>
+</body>
+</html>
+<script type="text/javascript">
+	var bus = new Vue()
+
+	Vue.component('no1',{
+		template:'#no1',
+		props:['a1'],
+		data(){
+			return {
+				n1:this.a1
+			}
+		},
+		created(){
+			bus.$on('f2',(a)=>{
+				this.n1=a
+			})
+		},
+		methods:{
+			fs(){
+				this.n1++
+				bus.$emit('f1',this.n1)
+			},
+			remo(){
+				this.n1--
+				bus.$emit('f1',this.n1)
+			}
+		},
+		watch:{
+			a1(a,b){
+				this.n1=a
+			}
+		}
+	})
+
+
+	Vue.component('no2',{
+		template:'#no2',
+		props:['a2'],
+		data(){
+			return {
+				n2:22
+			}
+		},
+		mounted(){
+			bus.$on('f1',(a)=>{
+				this.n2=a
+			})
+		},
+		methods:{
+			fn(){
+				this.n2++
+				bus.$emit('f2',this.n2)
+			},
+			fn2(){
+				this.n2--
+				bus.$emit('f2',this.n2)
+			}
+		}
+		
+	})
+
+	new Vue({
+		el:'.box'
+	})
+</script>

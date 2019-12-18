@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div>
+				<a href="#/">
+					no1
+				</a>
+				<a href="#/no2">
+					no2
+				</a>
+				<a href="#/no3">
+					no3
+				</a>
+			</div>
+			
+			<div>
+				<router-view></router-view>	
+			</div>
+		</div>
+		<template id="no1">
+			<div style="width: 500px;height: 400px;background-color: red;">
+				no1
+			</div>
+		</template>
+		<template id="no2">
+			<div style="width: 500px;height: 400px;background-color: red;">
+				no2
+			</div>
+		</template>
+		<template id="no3">
+			<div style="width: 500px;height: 400px;background-color: red;">
+				no3
+			</div>
+		</template>
+	</body>
+	<script src="vue.js"></script>
+	<script src="vue-router.js"></script>
+</html>
+<script type="text/javascript">
+	var routes = [
+	{path:'/',component:{template:'#no1'}},
+	{path:'/no2',component:{template:'#no2'}},
+	{path:'/no3',component:{template:'#no3'}}
+	];
+	var router = new VueRouter({routes})
+	new Vue({
+		el:'.box',
+		router
+	})
+</script>

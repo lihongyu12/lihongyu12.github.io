@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    .box {
+        background-color: red;
+        display: inline-block;
+        border-radius: 25px;
+        padding: 10px;
+        width: 100px;
+        text-align: center;
+        line-height: 100%;
+        height: 36px;
+        margin: 300px;
+        perspective: 400px;
+        transform-style: preserve-3d;
+    }
+
+    .box>div {
+        height: 36px;
+        overflow: hidden;
+        line-height: 36px;
+        perspective: 400px;
+        transform-style: preserve-3d;
+    }
+
+    .box2,
+    .box3 {
+        perspective: 400px;
+        transform-style: preserve-3d;
+    }
+
+    span {
+        display: inline-block;
+        -webkit-transition: all 0.2s ease-out;
+        /* Saf2.2+, Chrome */
+        -moz-transition: all 0.2s ease-out;
+        /* FF4+ */
+        -ms-transition: all 0.2s ease-out;
+        /* IE10? */
+        -o-transition: all 0.2s ease-out;
+        /* Opera 10.5+ */
+        transition: all 0.2s ease-out;
+
+    }
+    </style>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div class="box" @mouseover="hover()" @mouseout="leave()">
+    		<no1 :abc="arr"></no1>
+    </div>
+    <template id="no1">
+    	<div>
+    		<div class="box2">
+    			<span v-for="i in ite">{{i}}</span>
+            </div>
+            <div class="box3">
+                <span v-for="i in ite">{{i}}</span>
+            </div>
+    	</div>
+    </template>
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+Vue.component('no1', {
+    template: '#no1',
+    data(){
+    	return {
+    		ite:this.abc
+    	}
+    },
+    props:['abc']
+})
+new Vue({
+    el: '.box',
+    data: {
+    	arr:['b','u','t','t','o','n']
+    },
+    methods: {
+        hover() {
+            var i = 0
+            var kong = setInterval(function() {
+                $('.box2 span').eq(i).css('transform', 'translateY(-36px)')
+                $('.box3 span').eq(i).css('transform', 'translateY(-36px)')
+                i++;
+            }, 100)
+        },
+        leave() {
+            var i2 = 0
+            var kong2 = setInterval(function() {
+                $('.box2 span').eq(i2).css('transform', 'translateY(0px)')
+                $('.box3 span').eq(i2).css('transform', 'translateY(0px)')
+                i2++;
+            }, 100)
+        }
+    }
+})
+</script>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div class="box">
+		<one></one>
+		<two></two>
+	</div>
+	<template id="one">
+		<div>
+			<button @click="fs">{{dat}}</button>
+		</div>
+	</template>
+	<template id="two">
+		<div>
+			<button @click="fn">{{dta}}</button>
+		</div>
+	</template>
+</body>
+</html>
+<script type="text/javascript">
+	var pu = new Vue()
+
+	Vue.component('one',{
+		template:'#one',
+		props:['kone'],
+		data(){
+			return{
+				dat:this.kone
+			}
+		},
+		mounted(){
+			pu.$on('twos',(a)=>{
+				this.dat=a
+			})
+		},
+		methods:{
+			fs(){
+				this.dat++
+				pu.$emit('ones',this.dat)
+			}
+		},
+		watch:{
+			kone(a,b){
+				this.dat=a
+			}
+		}
+
+	})
+
+
+	Vue.component('two',{
+		template:'#two',
+		data(){
+			return {
+				dta:5
+			}
+		},
+		mounted(){
+			pu.$on('ones',(a)=>{
+				this.dta=a
+			})
+		},
+		methods:{
+			fn(){
+				this.dta++
+				pu.$emit('twos',this.dta)
+			}
+		}
+	})
+
+	new Vue({
+		el:'.box'
+	})
+</script>

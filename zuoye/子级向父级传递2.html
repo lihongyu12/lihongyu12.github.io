@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div class="box">
+        父级： <button @click="jia">{{num}}</button>
+        <noi @ckl="data"></noi>
+        
+    </div>
+
+    <template id="noi">
+        <div>
+           <button @click="btn">{{h}}</button>
+        </div>
+    </template>
+</body>
+
+</html>
+<script type="text/javascript">
+        Vue.component('noi',{
+            template:'#noi',
+            data(){
+                return{
+                    h:20
+                }
+            },
+            methods:{
+                btn(){
+                    this.h++
+                    this.$emit('ckl',this.h)
+                }
+            }
+        })
+    new Vue({
+        el:'.box',
+        data:{
+            num:''
+        },
+        methods:{
+            data(a){
+                this.num=a
+            },
+            jia(){
+                this.num++
+            }
+        }
+    })
+</script>
