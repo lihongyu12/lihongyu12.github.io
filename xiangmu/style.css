@@ -184,15 +184,15 @@
 .show{
 	margin-right:70px;
 	margin-left:70px;
+	display: flex;
 }
 .showchanpin{
-	width: 375px;
 	height: 310px;
 	border: 1px solid rgb(211,211,211);
 	box-sizing: border-box;
 	padding: 50px 40px 40px 40px;
-	float: left;
-	margin:40px;
+	margin:20px;
+	flex: 1;
 }
 .showchanpin h5{
 	color: #555;

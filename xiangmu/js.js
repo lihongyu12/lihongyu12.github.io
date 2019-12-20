@@ -88,7 +88,7 @@ Vue.component('showchanpin2_img', {
 
 Vue.component('showchanpin', {
     template: `
-    <div class="showchanpin" @mouseover="onmouse()" @mouseout="onleave">
+    <div class="showchanpin" @mouseover="onmouse()" @mouseout="onleave" >
             <h5><slot name="tit"></slot></h5>
             <div class="showchanpin-xian"><span :style="{}"></span></div>
             <p>
