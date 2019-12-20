@@ -154,8 +154,8 @@
     <template id="chanpin">
         <div>
             <div style="padding:0px 150px;background-color: rgb(141, 144, 149,.3);height: 400px;">
-                <div style="width: 427px;height: 400px;float: left;">
-                    <div class="swiper-container banner2">
+                <div style="margin-left:20px;height: 400px;float: left;">
+                    <div class="swiper-container banner2" style="width:427px;height: 400px;">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="(i,$index) in lunbo_arr">
                                 <img :src="i" alt="" style="width: 427px;height: 400px;">
@@ -200,13 +200,20 @@
         </div>
     </template>
     <template id="xinwen">
-        <div style="margin-right: 150px;margin-left: 100px;position: relative;" class="clearfix">
-            <div style="width:300px; text-indent: 3em; float: left;position: absolute;left: 0px; ">
+        <div>
+            
+        
+        <div style="margin-right: 100px;margin-left: 80px; position: relative;" class="clearfix">
+
+            <div  style="position:absolute;left: 0px;">
+                    <div style="width:300px; text-indent:3em;">
                 <p style="line-height: 30px;background-color: #999;color: #fff;">全部咨询</p>
                 <p style="border: 1px solid #999;line-height: 30px;"><a href="#/xinwen/1">企业动态</a></p>
                 <p style="border: 1px solid #999;border-top: none;line-height: 30px;"><a href="#/xinwen/1">行业资讯</a></p>
             </div>
-            <div style="float: left;width:880px;margin-left: 150px;" class="clearfix">
+            </div>
+            <div style="float: right;">
+                <div style="width:880px;" class="clearfix">
                 <newtxt v-for="(i,$index) in newarr">
                     <img :src="i.img" alt="" slot="img">
                     <span slot="tit">{{i.tit}}</span>
@@ -216,6 +223,9 @@
                     </span>
                 </newtxt>
             </div>
+            </div>
+            
+        </div>
         </div>
     </template>
     <template id="joinwe">
@@ -242,7 +252,7 @@
                     </div>
                 </div>
             </div>
-            <div style="margin-left: 150px;margin-right: 150px;" class="clearfix">
+            <div style="margin-left: 120px;margin-right: 120px;" class="clearfix">
                 <div style="width: 270px; float:left;">
                     <div style="width:250px; text-indent: 3em;  ">
                         <p style="line-height: 30px;background-color: #999;color: #fff;">联系我们</p>
