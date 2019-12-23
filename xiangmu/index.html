@@ -179,13 +179,13 @@
                     <span slot="txt">PRODUCT</span>
                 </displaychanpin>
                 <div class="show-cont" style="margin-top: 40px;">
-                    <div style="text-align: center;">
+                    <div style="text-align: center;" >
                         <a v-for="(i,$index) in show_arr" @click="show_img2=$index" style="display: inline-block; border: 1px solid #ccc;width: 100px; margin:0 20px;line-height: 20px;font-size:13px;color: #ccc; ">
                             {{i.tit}}
                         </a>
                     </div>
-                    <div style="margin-left: 130px;margin-right: 130px;overflow: hidden;margin-top: 30px;">
-                        <div v-for="(i,$index) in show_img(show_img2).img" style="float: left;width: 290px;height: 390px;background-color: #e9e9e9;text-align:center;margin: 10px;position: relative;" class="trans-" @mouseover="getindex=$index" @mouseout="getindex=null">
+                    <div style="margin-left: 130px;margin-right: 130px;margin-top: 30px;display: flex;flex-wrap: wrap;">
+                        <div v-for="(i,$index) in show_img(show_img2).img" style="float: left;flex:1;background-color: #e9e9e9;text-align:center;margin: 10px;position: relative;" class="trans-" @mouseover="getindex=$index" @mouseout="getindex=null">
                             <div style="width: 290px;height: 390px;overflow: hidden;">
                                 <img :src="i" style="transition: all 0.5s;width:210px;height:210px; margin-top: 50px;" :class="getindex==$index?'trans-show-img2':''">
                                 <p style="margin-top: 20px;line-height: 30px;">{{show_img(show_img2).tit2[$index]}}</p>
