@@ -404,7 +404,7 @@ Vue.component('newzixun', {
             <div style="height: 375px;background-color: #19cec5;text-align: center;overflow: hidden;">
                 <img src="https://ccdn.goodq.top/caches/5298879a47437c1c6c5e6399b11eb6f3/aHR0cDovLzU4MWRhMDNiNDU2ZWQudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxNi8xMS9mNzRjODU5YjUzMjEzM2Q0ZTc0ZTRjNWE0YmZlMjk4Yy02MDB4MjkxLnBuZw_p_p100_p_3D_p_p100_p_3D.png" alt="" style="margin-top: 90px;">
             </div>
-            <div style="margin:20px 100px;" class="clearfix">
+            <div style="margin:20px 50px;" class="clearfix">
                 <div style="float:right;width:308px;line-height:36px;font-size:18px;">
                     <div class="aside" style="min-height:600px;position:relative;background-color:#cdcdcd;">
                         <div style="position: absolute;left: px;top: 37px;">
