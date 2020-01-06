@@ -14,10 +14,13 @@ new Vue({
   render: h => h(App)
 })
 
-(function () {
+window.onload=function(){
+	(function () {
         var  styleN = document.createElement("style");
         var width = document.documentElement.clientWidth/16;
-        styleN.innerHTML = 'html{font-size:'+width+'px!important}';
+        styleN.innerHTML = 'html{font-size:'+width+'px !important}';
         document.head.appendChild(styleN);
     })();
 app.style.height=window.screen.height
+}
+
